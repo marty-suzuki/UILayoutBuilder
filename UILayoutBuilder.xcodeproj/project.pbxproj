@@ -25,6 +25,7 @@
 		EDA5405623E9DB90009A41C5 /* LayoutXAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405523E9DB90009A41C5 /* LayoutXAxis.swift */; };
 		EDA5405823E9DBD6009A41C5 /* LayoutYAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405723E9DBD6009A41C5 /* LayoutYAxis.swift */; };
 		EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */; };
+		EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */; };
 		OBJ_24 /* UILayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* UILayoutBuilder.swift */; };
 		OBJ_31 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_42 /* UILayoutBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* UILayoutBuilderTests.swift */; };
@@ -54,6 +55,7 @@
 		EDA5405523E9DB90009A41C5 /* LayoutXAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutXAxis.swift; sourceTree = "<group>"; };
 		EDA5405723E9DBD6009A41C5 /* LayoutYAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutYAxis.swift; sourceTree = "<group>"; };
 		EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDimension.swift; sourceTree = "<group>"; };
+		EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProxy.swift; sourceTree = "<group>"; };
 		OBJ_12 /* UILayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILayoutBuilderTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				EDA5405523E9DB90009A41C5 /* LayoutXAxis.swift */,
 				EDA5405723E9DBD6009A41C5 /* LayoutYAxis.swift */,
 				EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */,
+				EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */,
 			);
 			name = UILayoutBuilder;
 			path = Sources/UILayoutBuilder;
@@ -228,6 +231,7 @@
 			buildActionMask = 0;
 			files = (
 				EDA5405823E9DBD6009A41C5 /* LayoutYAxis.swift in Sources */,
+				EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */,
 				EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */,
 				EDA5405423E9DB23009A41C5 /* ConstraintBuilder.swift in Sources */,
 				OBJ_24 /* UILayoutBuilder.swift in Sources */,
