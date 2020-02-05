@@ -34,17 +34,17 @@ public struct LayoutYAxis {
         public func anchor(_ anchor: LayoutYAxis) -> ToAnchor {
             .init(constraint: { [toAnchor] in toAnchor(anchor.rawAnchor, $0) })
         }
+
+        public func anchor(_ anchor: LayoutYAxis) -> NSLayoutConstraint {
+            { [toAnchor] in toAnchor(anchor.rawAnchor, 0) }()
+        }
     }
 
-    public struct ToAnchor: ConstraintBuilder {
+    public struct ToAnchor {
         fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
 
-        public func build() -> NSLayoutConstraint {
-            constraint(0)
-        }
-
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [constraint] in constraint(constant) })
+        public func constant(_ constant: CGFloat) -> NSLayoutConstraint {
+            { [constraint] in constraint(constant) }()
         }
     }
 }

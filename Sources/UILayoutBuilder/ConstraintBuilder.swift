@@ -7,14 +7,14 @@
 
 import UIKit
 
-public protocol ConstraintBuilder {
-    func build() -> NSLayoutConstraint
-}
-
-public struct AnyConstraintBuilder: ConstraintBuilder {
-    let constraint: () -> NSLayoutConstraint
-
-    public func build() -> NSLayoutConstraint {
-        constraint()
-    }
-}
+//public protocol ConstraintBuilder {
+//    func build() -> NSLayoutConstraint
+//}
+//
+//public struct AnyConstraintBuilder: ConstraintBuilder {
+//    let constraint: () -> NSLayoutConstraint
+//
+//    public func build() -> NSLayoutConstraint {
+//        constraint()
+//    }
+//}

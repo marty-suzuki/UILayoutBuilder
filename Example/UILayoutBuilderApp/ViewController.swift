@@ -20,27 +20,48 @@ class ViewController: UIViewController {
         let view3 = UIView()
         view3.backgroundColor = .green
 
-        view.ulb.add { view in
+//        view.ulb.add { view in
+//
+//            view.addSubview(view2) { view2 in
+//
+//                NSLayoutConstraint.activate([
+//                    view2.leading.equalTo.anchor(view.leading).constant(10),
+//                    view2.trailing.equalTo.anchor(view.trailing).constant(-10),
+//                    view2.bottom.equalTo.anchor(view.bottom).constant(-10),
+//                    view2.top.equalTo.anchor(view.top).constant(10)
+//                ])
+//
+//                view2.addSubview(view3) { view3 in
+//
+//                    NSLayoutConstraint.activate([
+//                        view3.top.equalTo.anchor(view2.top),
+//                        view3.leading.equalTo.anchor(view2.leading),
+//                        view3.width.equalTo.anchor(view2.width).multiplier(0.5),
+//                        view3.height.equalTo.anchor(view2.height).multiplier(0.5),
+//                        view3.height.equalTo.constant(100)
+//                    ])
+//                }
+//            }
+//        }
 
-            view.addSubview(view2) { view2 in
 
-                NSLayoutConstraint.activate([
-                    view2.leading.equalTo.anchor(view.leading).constant(10).build(),
-                    view2.trailing.equalTo.anchor(view.trailing).constant(-10).build(),
-                    view2.bottom.equalTo.anchor(view.bottom).constant(-10).build(),
-                    view2.top.equalTo.anchor(view.top).constant(10).build()
-                ])
+//        view.layout(handler: { (view: ViewProxy) -> LayoutHolder in
+//            view.addSubview2(view2) { view2 in
+//                view2.leading.equalTo.anchor(view.leading)()
+//                view2.trailing.equalTo.anchor(view.trailing)()
+//                view2.bottom.equalTo.anchor(view.bottom)()
+//                view2.top.equalTo.anchor(view.top)()
+//            }
 
-                view2.addSubview(view3) { view3 in
-                    
-                    NSLayoutConstraint.activate([
-                        view3.top.equalTo.anchor(view2.top).build(),
-                        view3.leading.equalTo.anchor(view2.leading).build(),
-                        view3.width.equalTo.anchor(view2.width).multiplier(0.5).build(),
-                        view3.height.equalTo.anchor(view2.height).multiplier(0.5).build()
-                    ])
-                }
-            }
-        }
+
+//            view.width.equalTo.constant(1)
+//            view.width.equalTo.constant(1)
+//            view.addSubview2(view3) { view3 in
+//                view3.top.equalTo.anchor(view.top)()
+//                view3.leading.equalTo.anchor(view.leading)()
+//                view3.width.equalTo.anchor(view.width).multiplier(0.5)()
+//                view3.height.equalTo.anchor(view.height).multiplier(0.5)()
+//            }
+//        })
     }
 }

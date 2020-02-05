@@ -35,8 +35,8 @@ public struct LayoutDimension {
         fileprivate let toAnchor: (RawAnchor, CGFloat, CGFloat) -> NSLayoutConstraint
         fileprivate let toConstant: (CGFloat) -> NSLayoutConstraint
 
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [toConstant] in toConstant(constant) })
+        public func constant(_ constant: CGFloat) -> NSLayoutConstraint {
+            toConstant(constant)
         }
 
         public func anchor(_ anchor: LayoutDimension) -> ToAnchor {
@@ -44,23 +44,19 @@ public struct LayoutDimension {
         }
     }
 
-    public struct ToAnchor: ConstraintBuilder {
+    public struct ToAnchor {
         fileprivate let constraint: (CGFloat, CGFloat) -> NSLayoutConstraint
 
-        public func build() -> NSLayoutConstraint {
-            constraint(1, 0)
-        }
-
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [constraint] in constraint(1, constant) })
+        public func constant(_ constant: CGFloat) -> NSLayoutConstraint {
+            { [constraint] in constraint(1, constant) }()
         }
 
         public func constant(_ constant: CGFloat) -> Multiplier {
             Multiplier(constraint: { [constraint] in constraint($0, constant) })
         }
 
-        public func multiplier(_ multiplier: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [constraint] in constraint(multiplier, 0) })
+        public func multiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
+            { [constraint] in constraint(multiplier, 0) }()
         }
 
         public func multiplier(_ multiplier: CGFloat) -> Constant {
@@ -68,27 +64,19 @@ public struct LayoutDimension {
         }
     }
 
-    public struct Multiplier: ConstraintBuilder {
+    public struct Multiplier {
         fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
 
-        public func multiplier(_ multiplier: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [constraint] in constraint(multiplier) })
-        }
-
-        public func build() -> NSLayoutConstraint {
-            constraint(1)
+        public func multiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
+            { [constraint] in constraint(multiplier) }()
         }
     }
 
-    public struct Constant: ConstraintBuilder {
+    public struct Constant {
         fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
 
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            AnyConstraintBuilder(constraint: { [constraint] in constraint(constant) })
-        }
-
-        public func build() -> NSLayoutConstraint {
-            constraint(0)
+        public func constant(_ constant: CGFloat) ->  NSLayoutConstraint {
+            { [constraint] in constraint(constant) }()
         }
     }
 }
