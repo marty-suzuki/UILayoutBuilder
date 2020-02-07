@@ -39,9 +39,9 @@ public struct LayoutEdges {
             .init { [edges = view.edges, toTopAnchor, toLeadingAnchor, toBottomAnchor, toTrailingAnchor] insets in
                 [
                     toTopAnchor(edges.top, insets.top),
-                    toLeadingAnchor(edges.leading, insets.left),
+                    toLeadingAnchor(edges.leading, insets.leading),
                     toBottomAnchor(edges.bottom, insets.bottom),
-                    toTrailingAnchor(edges.trailing, insets.right)
+                    toTrailingAnchor(edges.trailing, insets.trailing)
                 ]
             }
         }
@@ -59,10 +59,10 @@ public struct LayoutEdges {
     }
 
     public struct ToInsets {
-        let constraints: ((top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)) -> [NSLayoutConstraint]
+        let constraints: ((top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat)) -> [NSLayoutConstraint]
 
-        public func insets(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> ConstraintsBuilder {
-            { [constraints] in constraints((top, left, bottom, right)) }
+        public func insets(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) -> ConstraintsBuilder {
+            { [constraints] in constraints((top, leading, bottom, trailing)) }
         }
 
         public func insets(_ all: CGFloat) -> ConstraintsBuilder {

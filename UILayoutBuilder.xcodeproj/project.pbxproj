@@ -24,6 +24,7 @@
 		ED6CDBEC23EC888E000E2E44 /* LayoutEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBEB23EC888E000E2E44 /* LayoutEdges.swift */; };
 		ED6CDBEE23EC935B000E2E44 /* LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */; };
 		ED6CDBF023ED0F09000E2E44 /* LayoutAnchorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBEF23ED0F09000E2E44 /* LayoutAnchorType.swift */; };
+		ED6CDBF223ED15C3000E2E44 /* LayoutAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */; };
 		EDA5405623E9DB90009A41C5 /* LayoutAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */; };
 		EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */; };
 		EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */; };
@@ -55,6 +56,7 @@
 		ED6CDBEB23EC888E000E2E44 /* LayoutEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEdges.swift; sourceTree = "<group>"; };
 		ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSize.swift; sourceTree = "<group>"; };
 		ED6CDBEF23ED0F09000E2E44 /* LayoutAnchorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnchorType.swift; sourceTree = "<group>"; };
+		ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAxes.swift; sourceTree = "<group>"; };
 		EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAxis.swift; sourceTree = "<group>"; };
 		EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDimension.swift; sourceTree = "<group>"; };
 		EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProxy.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				OBJ_9 /* UILayoutBuilder.swift */,
 				EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */,
+				ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */,
 				EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */,
 				ED6CDBEB23EC888E000E2E44 /* LayoutEdges.swift */,
 				ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */,
@@ -235,6 +238,7 @@
 			files = (
 				EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */,
 				EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */,
+				ED6CDBF223ED15C3000E2E44 /* LayoutAxes.swift in Sources */,
 				ED6CDBF023ED0F09000E2E44 /* LayoutAnchorType.swift in Sources */,
 				ED6CDBEC23EC888E000E2E44 /* LayoutEdges.swift in Sources */,
 				OBJ_24 /* UILayoutBuilder.swift in Sources */,

@@ -24,6 +24,9 @@ public struct ViewProxy {
 
     public var edges: LayoutEdges { .init(top: top, leading: leading, bottom: bottom, trailing: trailing) }
     public var size: LayoutSize { .init(width: width, height: height) }
+    public var horizontal: LayoutHorizontal { .init(axis1: leading, axis2: trailing) }
+    public var vertical: LayoutVertical { .init(axis1: top, axis2: bottom) }
+    public var center: LayoutCenter { .init(axis1: centerX, axis2: centerY) }
 
     private let view: UIView
 
