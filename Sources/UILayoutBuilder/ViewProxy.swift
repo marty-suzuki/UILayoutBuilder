@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct ViewProxy<View: UIView> {
+public struct ViewProxy {
 
     public var leading: LayoutXAxis { .init(view, for: \.leadingAnchor) }
     public var trailing: LayoutXAxis  { .init(view, for: \.trailingAnchor) }
@@ -22,18 +22,21 @@ public struct ViewProxy<View: UIView> {
     public var firstBaseline: LayoutYAxis { .init(view, for: \.firstBaselineAnchor) }
     public var lastBaseline: LayoutYAxis { .init(view, for: \.lastBaselineAnchor) }
 
-    private let view: View
+    public var edges: LayoutEdges { .init(top: top, leading: leading, bottom: bottom, trailing: trailing) }
+    public var size: LayoutSize { .init(width: width, height: height) }
 
-    init(_ view: View) {
+    private let view: UIView
+
+    init(_ view: UIView) {
         self.view = view
     }
 }
 
 extension ViewProxy {
 
-    public func addSubview<View: UIView>(_ subview: View, handler: ((ViewProxy<View>) -> Void)? = nil) {
+    public func addSubview(_ subview: UIView, handler: ((ViewProxy) -> Void)? = nil) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
-        handler?(ViewProxy<View>(subview))
+        handler?(ViewProxy(subview))
     }
 }
