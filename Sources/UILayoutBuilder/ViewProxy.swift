@@ -46,4 +46,193 @@ extension ViewProxy {
         view._add(subview: subview)
         handler?(ViewProxy(view: subview, context: context))
     }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           handler: ((ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           _ subview6: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5, subview6].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context),
+            ViewProxy(view: subview6, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           _ subview6: UIView,
+                           _ subview7: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5, subview6, subview7].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context),
+            ViewProxy(view: subview6, context: context),
+            ViewProxy(view: subview7, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           _ subview6: UIView,
+                           _ subview7: UIView,
+                           _ subview8: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5, subview6, subview7, subview8].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context),
+            ViewProxy(view: subview6, context: context),
+            ViewProxy(view: subview7, context: context),
+            ViewProxy(view: subview8, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           _ subview6: UIView,
+                           _ subview7: UIView,
+                           _ subview8: UIView,
+                           _ subview9: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5, subview6, subview7, subview8, subview9].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context),
+            ViewProxy(view: subview6, context: context),
+            ViewProxy(view: subview7, context: context),
+            ViewProxy(view: subview8, context: context),
+            ViewProxy(view: subview9, context: context)
+        )
+    }
+
+    public func addSubview(_ subview1: UIView,
+                           _ subview2: UIView,
+                           _ subview3: UIView,
+                           _ subview4: UIView,
+                           _ subview5: UIView,
+                           _ subview6: UIView,
+                           _ subview7: UIView,
+                           _ subview8: UIView,
+                           _ subview9: UIView,
+                           _ subview10: UIView,
+                           handler: ((ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy, ViewProxy) -> Void)? = nil) {
+        [subview1, subview2, subview3, subview4, subview5, subview6, subview7, subview8, subview9, subview10].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view._add(subview: $0)
+        }
+        handler?(
+            ViewProxy(view: subview1, context: context),
+            ViewProxy(view: subview2, context: context),
+            ViewProxy(view: subview3, context: context),
+            ViewProxy(view: subview4, context: context),
+            ViewProxy(view: subview5, context: context),
+            ViewProxy(view: subview6, context: context),
+            ViewProxy(view: subview7, context: context),
+            ViewProxy(view: subview8, context: context),
+            ViewProxy(view: subview9, context: context),
+            ViewProxy(view: subview10, context: context)
+        )
+    }
 }

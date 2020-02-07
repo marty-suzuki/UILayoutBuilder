@@ -34,12 +34,10 @@ class ViewController: UIViewController {
 
                 view2.addSubview(stackView) { stackView in
 
-                    stackView.addSubview(view3) { view3 in
-                        view3.size.equalTo.size(width: 100, height: 100)
-                    }
-
-                    stackView.addSubview(view4) { view4 in
-                        view4.size.equalTo.size(width: 100, height: 100)
+                    stackView.addSubview(view3, view4) { view3, view4 in
+                        view3.width.equalTo.constant(100)
+                        view3.width.equalTo.anchor(view3.height)
+                        view4.size.equalTo.view(view3)
                     }
 
                     stackView.center.equalTo.view(view2)

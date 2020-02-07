@@ -36,7 +36,7 @@ extension LayoutSize.Relation {
 
     @discardableResult
     public func view(_ view: ViewProxy,
-                     multiplier: CGFloat = 0,
+                     multiplier: CGFloat = 1,
                      width: CGFloat = 0,
                      height: CGFloat = 0) -> [NSLayoutConstraint] {
         [
