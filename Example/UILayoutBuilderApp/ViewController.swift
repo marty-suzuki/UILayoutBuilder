@@ -17,20 +17,32 @@ class ViewController: UIViewController {
         let view2 = UIView()
         view2.backgroundColor = .red
 
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+
         let view3 = UIView()
         view3.backgroundColor = .green
+
+        let view4 = UIView()
+        view4.backgroundColor = .yellow
 
         view.ulb.add { view in
 
             view.addSubview(view2) { view2 in
 
-                view2.edges.equalTo.view(view, all: 10)
+                view2.edges.equalTo.view(view, all: 30)
 
-                view2.addSubview(view3) { view3 in
+                view2.addSubview(stackView) { stackView in
 
-                    view3.top.equalTo.anchor(view2.top)
-                    view3.leading.equalTo.anchor(view2.leading)
-                    view3.size.equalTo.view(view2, multiplier: 0.5)
+                    stackView.addSubview(view3) { view3 in
+                        view3.size.equalTo.size(width: 100, height: 100)
+                    }
+
+                    stackView.addSubview(view4) { view4 in
+                        view4.size.equalTo.size(width: 100, height: 100)
+                    }
+
+                    stackView.center.equalTo.view(view2)
                 }
             }
         }

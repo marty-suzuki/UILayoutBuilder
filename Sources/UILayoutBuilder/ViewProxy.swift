@@ -43,7 +43,7 @@ extension ViewProxy {
 
     public func addSubview(_ subview: UIView, handler: ((ViewProxy) -> Void)? = nil) {
         subview.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(subview)
+        view._add(subview: subview)
         handler?(ViewProxy(view: subview, context: context))
     }
 }

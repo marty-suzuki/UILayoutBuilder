@@ -35,6 +35,18 @@ extension UILayoutBuilderExtension where Base: UIView {
     }
 }
 
+extension UIView {
+    @objc func _add(subview: UIView) {
+        addSubview(subview)
+    }
+}
+
+extension UIStackView {
+    @objc override func _add(subview: UIView) {
+        addArrangedSubview(subview)
+    }
+}
+
 final class Context {
 
     private(set) var constraints: [NSLayoutConstraint] = []
