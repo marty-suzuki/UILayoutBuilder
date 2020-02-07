@@ -8,80 +8,57 @@
 import UIKit
 
 public struct LayoutDimension {
-    public typealias RawAnchor = NSLayoutDimension
+    typealias RawAnchor = NSLayoutDimension
+
+    private let rawAnchor: RawAnchor
+    private let context: Context
+
+    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>, context: Context) {
+        self.rawAnchor = view[keyPath: keyPath]
+        self.context = context
+    }
+}
+
+extension LayoutDimension {
 
     public var equalTo: Relation {
         .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0, multiplier: $1, constant: $2) },
-              toConstant: { [rawAnchor] in rawAnchor.constraint(equalToConstant: $0) })
+              toConstant: { [rawAnchor] in rawAnchor.constraint(equalToConstant: $0) },
+              context: context)
     }
 
     public var greaterThanOrEqualTo: Relation {
         .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0, multiplier: $1, constant: $2) },
-              toConstant: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualToConstant: $0) })
+              toConstant: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualToConstant: $0) },
+              context: context)
     }
 
     public var lessThanOrEqualTo: Relation {
         .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0, multiplier: $1, constant: $2) },
-              toConstant: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualToConstant: $0) })
+              toConstant: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualToConstant: $0) },
+              context: context)
     }
+}
 
-    private let rawAnchor: RawAnchor
-
-    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>) {
-        self.rawAnchor = view[keyPath: keyPath]
-    }
+extension LayoutDimension {
 
     public struct Relation {
         fileprivate let toAnchor: (RawAnchor, CGFloat, CGFloat) -> NSLayoutConstraint
         fileprivate let toConstant: (CGFloat) -> NSLayoutConstraint
+        fileprivate let context: Context
+    }
+}
 
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            { [toConstant] in toConstant(constant) }
-        }
+extension LayoutDimension.Relation {
 
-        public func anchor(_ anchor: LayoutDimension) -> ToAnchor {
-            .init(constraint: { [toAnchor] in toAnchor(anchor.rawAnchor, $0, $1) })
-        }
-
-        public func anchor(_ anchor: LayoutDimension) -> ConstraintBuilder {
-            { [toAnchor] in toAnchor(anchor.rawAnchor, 1, 0) }
-        }
+    @discardableResult
+    public func constant(_ constant: CGFloat) -> NSLayoutConstraint {
+        context.addConstraint(toConstant(constant))
     }
 
-    public struct ToAnchor {
-        fileprivate let constraint: (CGFloat, CGFloat) -> NSLayoutConstraint
-
-        public func constant(_ constant: CGFloat) -> Multiplier {
-            .init(constraint: { [constraint] in constraint($0, constant) })
-        }
-
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            { [constraint] in constraint(1, constant) }
-        }
-
-        public func multiplier(_ multiplier: CGFloat) -> Constant {
-            .init(constraint: { [constraint] in constraint(multiplier, $0) })
-        }
-
-        public func multiplier(_ multiplier: CGFloat) -> ConstraintBuilder {
-            { [constraint] in constraint(multiplier, 0) }
-        }
-    }
-
-    public struct Multiplier {
-        fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
-
-        public func multiplier(_ multiplier: CGFloat) -> ConstraintBuilder {
-            { [constraint] in constraint(multiplier) }
-        }
-    }
-
-    public struct Constant {
-        fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
-
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            { [constraint] in constraint(constant) }
-        }
+    @discardableResult
+    public func anchor(_ anchor: LayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
+        context.addConstraint(toAnchor(anchor.rawAnchor, multiplier, constant))
     }
 }
 

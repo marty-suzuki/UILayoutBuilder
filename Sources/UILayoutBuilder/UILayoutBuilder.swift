@@ -29,9 +29,18 @@ extension UIView: UILayoutBuilderCompatible {}
 extension UILayoutBuilderExtension where Base: UIView {
 
     public func add(handler: (ViewProxy) -> Void) {
-        handler(ViewProxy(base))
+        let context = Context()
+        handler(ViewProxy(view: base, context: context))
+        NSLayoutConstraint.activate(context.constraints)
     }
 }
 
-public typealias ConstraintBuilder = () -> NSLayoutConstraint
-public typealias ConstraintsBuilder = () -> [NSLayoutConstraint]
+final class Context {
+
+    private(set) var constraints: [NSLayoutConstraint] = []
+
+    func addConstraint(_ constrant: NSLayoutConstraint) -> NSLayoutConstraint {
+        constraints.append(constrant)
+        return constrant
+    }
+}

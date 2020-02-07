@@ -12,6 +12,7 @@ public protocol LayoutAxisTrait {
 }
 
 public enum Axis {
+
     public enum X: LayoutAxisTrait {
         public typealias RawAnchor = NSLayoutXAxisAnchor
     }
@@ -25,43 +26,47 @@ public typealias LayoutYAxis = LayoutAxis<Axis.Y>
 public typealias LayoutXAxis = LayoutAxis<Axis.X>
 
 public struct LayoutAxis<Trait: LayoutAxisTrait> {
-    public typealias RawAnchor = Trait.RawAnchor
+    typealias RawAnchor = Trait.RawAnchor
+
+    private let rawAnchor: RawAnchor
+    private let context: Context
+
+    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>, context: Context) {
+        self.rawAnchor = view[keyPath: keyPath]
+        self.context = context
+    }
+}
+
+extension LayoutAxis {
 
     public var equalTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0, constant: $1) })
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0, constant: $1) },
+              context: context)
     }
 
     public var greaterThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0, constant: $1) })
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0, constant: $1) },
+              context: context)
     }
 
     public var lessThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0, constant: $1) })
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0, constant: $1) },
+              context: context)
     }
+}
 
-    private let rawAnchor: RawAnchor
-
-    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>) {
-        self.rawAnchor = view[keyPath: keyPath]
-    }
+extension LayoutAxis {
 
     public struct Relation {
         fileprivate let toAnchor: (RawAnchor, CGFloat) -> NSLayoutConstraint
-
-        public func anchor(_ anchor: LayoutAxis<Trait>) -> ToAnchor {
-            .init(constraint: { [toAnchor] in toAnchor(anchor.rawAnchor, $0) })
-        }
-
-        public func anchor(_ anchor: LayoutAxis<Trait>) -> ConstraintBuilder {
-            { [toAnchor] in toAnchor(anchor.rawAnchor, 0) }
-        }
+        fileprivate let context: Context
     }
+}
 
-    public struct ToAnchor {
-        fileprivate let constraint: (CGFloat) -> NSLayoutConstraint
+extension LayoutAxis.Relation {
 
-        public func constant(_ constant: CGFloat) -> ConstraintBuilder {
-            { [constraint] in constraint(constant) }
-        }
+    @discardableResult
+    public func anchor(_ anchor: LayoutAxis<Trait>, constant: CGFloat = 0) -> NSLayoutConstraint {
+        context.addConstraint(toAnchor(anchor.rawAnchor, constant))
     }
 }

@@ -24,17 +24,13 @@ class ViewController: UIViewController {
 
             view.addSubview(view2) { view2 in
 
-                NSLayoutConstraint.activate(
-                    view2.edges.equalTo.view(view).insets(10)()
-                )
+                view2.edges.equalTo.view(view, all: 10)
 
                 view2.addSubview(view3) { view3 in
 
-                    NSLayoutConstraint.activate([
-                        view3.top.equalTo.anchor(view2.top)(),
-                        view3.leading.equalTo.anchor(view2.leading)()
-                    ])
-                    NSLayoutConstraint.activate(view3.size.equalTo.view(view2).multiplier(0.5)())
+                    view3.top.equalTo.anchor(view2.top)
+                    view3.leading.equalTo.anchor(view2.leading)
+                    view3.size.equalTo.view(view2, multiplier: 0.5)
                 }
             }
         }

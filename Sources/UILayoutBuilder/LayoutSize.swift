@@ -9,10 +9,6 @@ import UIKit
 
 public struct LayoutSize {
 
-    public var equalTo: Relation {
-        .init(width: width.equalTo, height: height.equalTo)
-    }
-
     private let width: LayoutDimension
     private let height: LayoutDimension
 
@@ -20,56 +16,40 @@ public struct LayoutSize {
         self.width = width
         self.height = height
     }
+}
 
+extension LayoutSize {
+
+    public var equalTo: Relation {
+        .init(width: width.equalTo, height: height.equalTo)
+    }
+}
+
+extension LayoutSize {
     public struct Relation {
-
         fileprivate let width: LayoutDimension.Relation
         fileprivate let height: LayoutDimension.Relation
+    }
+}
 
-        public func view(_ view: ViewProxy) -> ToSize {
-            .init(width: width.anchor(view.width), height: height.anchor(view.height))
-        }
+extension LayoutSize.Relation {
 
-        public func view(_ view: ViewProxy) -> ConstraintsBuilder {
-            { [width, height] in
-                [
-                    width.anchor(view.width)(),
-                    height.anchor(view.height)()
-                ]
-            }
-        }
-
-        public func size(width: CGFloat, height: CGFloat) -> ConstraintsBuilder {
-            return { [w = self.width, h = self.height] in
-                [
-                    w.constant(width)(),
-                    h.constant(height)()
-                ]
-            }
-        }
+    @discardableResult
+    public func view(_ view: ViewProxy,
+                     multiplier: CGFloat = 0,
+                     width: CGFloat = 0,
+                     height: CGFloat = 0) -> [NSLayoutConstraint] {
+        [
+            self.width.anchor(view.width, multiplier: multiplier, constant: width),
+            self.height.anchor(view.height, multiplier: multiplier, constant: height)
+        ]
     }
 
-    public struct ToSize {
-
-        fileprivate let width: LayoutDimension.ToAnchor
-        fileprivate let height: LayoutDimension.ToAnchor
-
-        public func size(width: CGFloat, height: CGFloat) -> ConstraintsBuilder {
-            { [w = self.width, h = self.height] in
-                [
-                    w.constant(width)(),
-                    h.constant(height)()
-                ]
-            }
-        }
-
-        public func multiplier(_ multiplier: CGFloat) -> ConstraintsBuilder {
-            { [width, height] in
-                [
-                    width.multiplier(multiplier)(),
-                    height.multiplier(multiplier)()
-                ]
-            }
-        }
+    @discardableResult
+    public func size(width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
+        [
+            self.width.constant(width),
+            self.height.constant(height)
+        ]
     }
 }

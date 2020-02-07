@@ -8,14 +8,6 @@
 import UIKit
 
 public struct LayoutEdges {
-
-    public var equalTo: Relation {
-        .init(toTopAnchor: { [to  = top] from, constant in to.equalTo.anchor(from).constant(constant)() },
-              toLeadingAnchor: { [to  = leading] from, constant in to.equalTo.anchor(from).constant(constant)() },
-              toBottomAnchor: { [to  = bottom] from, constant in to.equalTo.anchor(from).constant(constant)() },
-              toTrailingAnchor: { [to  = trailing] from, constant in to.equalTo.anchor(from).constant(constant)() })
-    }
-
     private let top: LayoutYAxis
     private let leading: LayoutXAxis
     private let bottom: LayoutYAxis
@@ -27,46 +19,67 @@ public struct LayoutEdges {
         self.bottom = bottom
         self.trailing = trailing
     }
+}
+
+extension LayoutEdges {
+
+    public var equalTo: Relation {
+        .init(toTopAnchor:      { [to = top]      from, constant in to.equalTo.anchor(from, constant: constant) },
+              toLeadingAnchor:  { [to = leading]  from, constant in to.equalTo.anchor(from, constant: constant) },
+              toBottomAnchor:   { [to = bottom]   from, constant in to.equalTo.anchor(from, constant: constant) },
+              toTrailingAnchor: { [to = trailing] from, constant in to.equalTo.anchor(from, constant: constant) })
+    }
+
+    public var greaterThanOrEqualTo: Relation {
+        .init(toTopAnchor:      { [to = top]      from, constant in to.greaterThanOrEqualTo.anchor(from, constant: constant) },
+              toLeadingAnchor:  { [to = leading]  from, constant in to.greaterThanOrEqualTo.anchor(from, constant: constant) },
+              toBottomAnchor:   { [to = bottom]   from, constant in to.greaterThanOrEqualTo.anchor(from, constant: constant) },
+              toTrailingAnchor: { [to = trailing] from, constant in to.greaterThanOrEqualTo.anchor(from, constant: constant) })
+    }
+
+    public var lessThanOrEqualTo: Relation {
+        .init(toTopAnchor:      { [to = top]      from, constant in to.lessThanOrEqualTo.anchor(from, constant: constant) },
+              toLeadingAnchor:  { [to = leading]  from, constant in to.lessThanOrEqualTo.anchor(from, constant: constant) },
+              toBottomAnchor:   { [to = bottom]   from, constant in to.lessThanOrEqualTo.anchor(from, constant: constant) },
+              toTrailingAnchor: { [to = trailing] from, constant in to.lessThanOrEqualTo.anchor(from, constant: constant) })
+    }
+}
+
+extension LayoutEdges {
 
     public struct Relation {
-
         fileprivate let toTopAnchor: (LayoutYAxis, CGFloat) -> NSLayoutConstraint
         fileprivate let toLeadingAnchor: (LayoutXAxis, CGFloat) -> NSLayoutConstraint
         fileprivate let toBottomAnchor: (LayoutYAxis, CGFloat) -> NSLayoutConstraint
         fileprivate let toTrailingAnchor: (LayoutXAxis, CGFloat) -> NSLayoutConstraint
+    }
+}
 
-        public func view(_ view: ViewProxy) -> ToInsets {
-            .init { [edges = view.edges, toTopAnchor, toLeadingAnchor, toBottomAnchor, toTrailingAnchor] insets in
-                [
-                    toTopAnchor(edges.top, insets.top),
-                    toLeadingAnchor(edges.leading, insets.leading),
-                    toBottomAnchor(edges.bottom, insets.bottom),
-                    toTrailingAnchor(edges.trailing, insets.trailing)
-                ]
-            }
-        }
+extension LayoutEdges.Relation {
 
-        public func view(_ view: ViewProxy) -> ConstraintsBuilder {
-            { [edges = view.edges, toTopAnchor, toLeadingAnchor, toBottomAnchor, toTrailingAnchor] in
-                [
-                    toTopAnchor(edges.top, 0),
-                    toLeadingAnchor(edges.leading, 0),
-                    toBottomAnchor(edges.bottom, 0),
-                    toTrailingAnchor(edges.trailing, 0)
-                ]
-            }
-        }
+    @discardableResult
+    public func view(_ view: ViewProxy,
+                     top: CGFloat,
+                     leading: CGFloat,
+                     bottom: CGFloat,
+                     trailing: CGFloat) -> [NSLayoutConstraint] {
+        let edges = view.edges
+        return [
+            toTopAnchor(edges.top, top),
+            toLeadingAnchor(edges.leading, leading),
+            toBottomAnchor(edges.bottom, bottom),
+            toTrailingAnchor(edges.trailing, trailing)
+        ]
     }
 
-    public struct ToInsets {
-        let constraints: ((top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat)) -> [NSLayoutConstraint]
-
-        public func insets(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) -> ConstraintsBuilder {
-            { [constraints] in constraints((top, leading, bottom, trailing)) }
-        }
-
-        public func insets(_ all: CGFloat) -> ConstraintsBuilder {
-            { [constraints] in constraints((all, all, -all, -all)) }
-        }
+    @discardableResult
+    public func view(_ view: ViewProxy, all constant: CGFloat) -> [NSLayoutConstraint] {
+        let edges = view.edges
+        return [
+            toTopAnchor(edges.top, constant),
+            toLeadingAnchor(edges.leading, constant),
+            toBottomAnchor(edges.bottom, -constant),
+            toTrailingAnchor(edges.trailing, -constant)
+        ]
     }
 }
