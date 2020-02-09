@@ -38,32 +38,29 @@ class ViewController: UIViewController {
         let yellowView = UIView()
         yellowView.backgroundColor = .yellow
 
-        view.ulb.layout { view in
+        view.ulb.add.subview(yellowView, redView) { view, yellowView, redView in
 
-            view.add.subview(yellowView, redView) { yellowView, redView in
+            redView.top.equalTo.top(view.safeAreaLayoutGuide).constant(-10)
+            redView.leading.equalTo.leading(view.safeAreaLayoutGuide).constant(10)
+            redView.trailing.equalTo.trailing(view.safeAreaLayoutGuide).constant(-10)
+            redView.height.equalTo.height(view.safeAreaLayoutGuide).multiplier(0.5).constant(-15)
 
-                redView.top.equalTo.top(view.safeAreaLayoutGuide).constant(-10)
-                redView.leading.equalTo.leading(view.safeAreaLayoutGuide).constant(10)
-                redView.trailing.equalTo.trailing(view.safeAreaLayoutGuide).constant(-10)
-                redView.height.equalTo.height(view.safeAreaLayoutGuide).multiplier(0.5).constant(-15)
+            yellowView.top.equalTo.bottom(redView).constant(10)
+            yellowView.leading.equalTo.leading(view.safeAreaLayoutGuide).constant(10)
+            yellowView.trailing.equalTo.trailing(view.safeAreaLayoutGuide).constant(-10)
+            yellowView.height.equalTo.height(view.safeAreaLayoutGuide).multiplier(0.5).constant(-15)
 
-                yellowView.top.equalTo.bottom(redView).constant(10)
-                yellowView.leading.equalTo.leading(view.safeAreaLayoutGuide).constant(10)
-                yellowView.trailing.equalTo.trailing(view.safeAreaLayoutGuide).constant(-10)
-                yellowView.height.equalTo.height(view.safeAreaLayoutGuide).multiplier(0.5).constant(-15)
+            yellowView.add.subview(greenView) { greenView in
+                greenView.top.equalTo.top(yellowView)
+                greenView.trailing.equalTo.trailing(yellowView)
+                greenViewBottomConstraint = greenView.bottom.equalTo.bottom(yellowView).asConstraint()
+                greenView.width.equalTo.width(yellowView).multiplier(0.5)
+            }
 
-                yellowView.add.subview(greenView) { greenView in
-                    greenView.top.equalTo.top(yellowView)
-                    greenView.trailing.equalTo.trailing(yellowView)
-                    greenViewBottomConstraint = greenView.bottom.equalTo.bottom(yellowView).asConstraint()
-                    greenView.width.equalTo.width(yellowView).multiplier(0.5)
-                }
-
-                redView.add.subview(whiteView) { whiteView in
-                    whiteView.bottom.equalTo.bottom(redView).constant(-10)
-                    whiteView.leading.equalTo.leading(redView).constant(10)
-                    whiteView.height.equalTo.constant(100)
-                }
+            redView.add.subview(whiteView) { whiteView in
+                whiteView.bottom.equalTo.bottom(redView).constant(-10)
+                whiteView.leading.equalTo.leading(redView).constant(10)
+                whiteView.height.equalTo.constant(100)
             }
         }
 
