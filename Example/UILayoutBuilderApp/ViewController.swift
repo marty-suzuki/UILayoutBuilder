@@ -28,13 +28,13 @@ class ViewController: UIViewController {
 
         view.ulb.layout { view in
 
-            view.addSubview(view2) { view2 in
+            view.add.subview(view2) { view2 in
 
                 view2.edges.equalTo.edges(view).constant(30)
 
-                view2.addSubview(stackView) { stackView in
+                view2.add.subview(stackView) { stackView in
 
-                    stackView.addSubview(view3, view4) { view3, view4 in
+                    stackView.add.subview(view3, view4) { view3, view4 in
                         view3.width.equalTo.constant(100)
                         view3.width.equalTo.anchor(view3.height)
                     }
