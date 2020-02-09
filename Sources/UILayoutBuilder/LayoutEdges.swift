@@ -83,11 +83,11 @@ extension LayoutEdges {
 extension LayoutEdges.Relation {
 
     @discardableResult
-    public func edges(_ view: ViewProxy) -> LayoutEdges.Builder {
-        .init(top: top.top(view),
-              leading: leading.leading(view),
-              bottom: bottom.bottom(view),
-              trailing: trailing.trailing(view))
+    public func edges(_ layout: LayoutRepresentable) -> LayoutEdges.Builder {
+        .init(top: top.top(layout),
+              leading: leading.leading(layout),
+              bottom: bottom.bottom(layout),
+              trailing: trailing.trailing(layout))
     }
 }
 

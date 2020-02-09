@@ -52,8 +52,8 @@ extension LayoutSize {
 extension LayoutSize.Relation {
 
     @discardableResult
-    public func size(_ view: ViewProxy) -> LayoutSize.Builder {
-        .init(width: width.width(view), height: height.height(view))
+    public func size(_ layout: LayoutRepresentable) -> LayoutSize.Builder {
+        .init(width: width.width(layout), height: height.height(layout))
     }
 
     @discardableResult

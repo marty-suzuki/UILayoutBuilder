@@ -14,7 +14,7 @@ public typealias LayoutVertical = LayoutAxes<Axes.Vertical>
 public protocol LayoutAxiesTrait {
     associatedtype Axis1: LayoutAxisTrait
     associatedtype Axis2: LayoutAxisTrait
-    static func axes(from view: ViewProxy) -> LayoutAxes<Self>
+    static func axes(from layout: LayoutRepresentable) -> LayoutAxes<Self>
 }
 
 public enum Axes {
@@ -23,8 +23,8 @@ public enum Axes {
         public typealias Axis1 = Axis.X
         public typealias Axis2 = Axis.X
 
-        public static func axes(from view: ViewProxy) -> LayoutAxes<Horizontal> {
-            view.horizontal
+        public static func axes(from layout: LayoutRepresentable) -> LayoutAxes<Horizontal> {
+            layout.horizontal
         }
     }
 
@@ -32,8 +32,8 @@ public enum Axes {
         public typealias Axis1 = Axis.Y
         public typealias Axis2 = Axis.Y
 
-        public static func axes(from view: ViewProxy) -> LayoutAxes<Vertical> {
-            view.vertical
+        public static func axes(from layout: LayoutRepresentable) -> LayoutAxes<Vertical> {
+            layout.vertical
         }
     }
 
@@ -41,8 +41,8 @@ public enum Axes {
         public typealias Axis1 = Axis.X
         public typealias Axis2 = Axis.Y
 
-        public static func axes(from view: ViewProxy) -> LayoutAxes<Center> {
-            view.center
+        public static func axes(from layout: LayoutRepresentable) -> LayoutAxes<Center> {
+            layout.center
         }
     }
 }
@@ -93,8 +93,8 @@ extension LayoutAxes {
 
 extension LayoutAxes.Relation {
 
-    private func axes(_ view: ViewProxy) -> LayoutAxes.Builder {
-        let axes = Trait.axes(from: view)
+    private func axes(_ layout: LayoutRepresentable) -> LayoutAxes.Builder {
+        let axes = Trait.axes(from: layout)
         return .init(axis1: axis1.anchor(axes.axis1), axis2: axis2.anchor(axes.axis2))
     }
 }
@@ -117,8 +117,8 @@ extension LayoutAxes.Builder {
 extension LayoutAxes.Relation where Trait == Axes.Center {
 
     @discardableResult
-    public func center(_ view: ViewProxy) -> LayoutAxes.Builder {
-        axes(view)
+    public func center(_ layout: LayoutRepresentable) -> LayoutAxes.Builder {
+        axes(layout)
     }
 }
 
@@ -140,8 +140,8 @@ extension LayoutAxes.ConstrantGroup where Trait == Axes.Center {
 extension LayoutAxes.Relation where Trait == Axes.Horizontal {
 
     @discardableResult
-    public func horizontal(_ view: ViewProxy) -> LayoutAxes.Builder {
-        axes(view)
+    public func horizontal(_ layout: LayoutRepresentable) -> LayoutAxes.Builder {
+        axes(layout)
     }
 }
 
@@ -163,8 +163,8 @@ extension LayoutAxes.ConstrantGroup where Trait == Axes.Horizontal {
 extension LayoutAxes.Relation where Trait == Axes.Vertical {
 
     @discardableResult
-    public func vertical(_ view: ViewProxy) -> LayoutAxes.Builder {
-        axes(view)
+    public func vertical(_ layout: LayoutRepresentable) -> LayoutAxes.Builder {
+        axes(layout)
     }
 }
 

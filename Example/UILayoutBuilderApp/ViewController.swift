@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
             view.add.subview(view2) { view2 in
 
-                view2.edges.equalTo.edges(view).constant(30)
+                view2.edges.equalTo.edges(view.safeAreaLayoutGuide).constant(30)
 
                 view2.add.subview(stackView) { stackView in
 

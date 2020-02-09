@@ -35,6 +35,11 @@ public struct LayoutAxis<Trait: LayoutAxisTrait> {
         self.rawAnchor = view[keyPath: keyPath]
         self.context = context
     }
+
+    init(_ layoutGuide: UILayoutGuide, for keyPath: KeyPath<UILayoutGuide, RawAnchor>, context: Context) {
+        self.rawAnchor = layoutGuide[keyPath: keyPath]
+        self.context = context
+    }
 }
 
 extension LayoutAxis {
@@ -75,18 +80,18 @@ extension LayoutAxis.Relation {
 extension LayoutAxis.Relation where Trait == Axis.Y {
 
     @discardableResult
-    public func top(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.top)
+    public func top(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.top)
     }
 
     @discardableResult
-    public func bottom(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.bottom)
+    public func bottom(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.bottom)
     }
 
     @discardableResult
-    public func centerY(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.centerY)
+    public func centerY(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.centerY)
     }
 
     @discardableResult
@@ -103,27 +108,27 @@ extension LayoutAxis.Relation where Trait == Axis.Y {
 extension LayoutAxis.Relation where Trait == Axis.X {
 
     @discardableResult
-    public func leading(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.leading)
+    public func leading(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.leading)
     }
 
     @discardableResult
-    public func trailing(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.trailing)
+    public func trailing(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.trailing)
     }
 
     @discardableResult
-    public func left(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.left)
+    public func left(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.left)
     }
 
     @discardableResult
-    public func right(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.right)
+    public func right(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.right)
     }
 
     @discardableResult
-    public func centerX(_ view: ViewProxy) -> LayoutAxis.Builder {
-        anchor(view.centerX)
+    public func centerX(_ layout: LayoutRepresentable) -> LayoutAxis.Builder {
+        anchor(layout.centerX)
     }
 }

@@ -18,7 +18,7 @@ public struct ViewProxy {
     }
 }
 
-extension ViewProxy {
+extension ViewProxy: LayoutRepresentable {
     public var leading      : LayoutXAxis      { .init(view, for: \.leadingAnchor, context: context) }
     public var trailing     : LayoutXAxis      { .init(view, for: \.trailingAnchor, context: context) }
     public var left         : LayoutXAxis      { .init(view, for: \.leftAnchor, context: context) }
@@ -37,6 +37,16 @@ extension ViewProxy {
     public var center       : LayoutCenter     { .init(axis1: centerX, axis2: centerY) }
     public var horizontal   : LayoutHorizontal { .init(axis1: leading, axis2: trailing) }
     public var vertical     : LayoutVertical   { .init(axis1: top,     axis2: bottom) }
+}
+
+extension ViewProxy {
+    public var safeAreaLayoutGuide: LayoutGuideProxy {
+        .init(layoutGuide: view.safeAreaLayoutGuide, context: context)
+    }
+
+    public var layoutMarginsGuide: LayoutGuideProxy {
+        .init(layoutGuide: view.layoutMarginsGuide, context: context)
+    }
 }
 
 extension ViewProxy {

@@ -17,6 +17,11 @@ public struct LayoutDimension {
         self.rawAnchor = view[keyPath: keyPath]
         self.context = context
     }
+
+    init(_ layoutGuide: UILayoutGuide, for keyPath: KeyPath<UILayoutGuide, RawAnchor>, context: Context) {
+        self.rawAnchor = layoutGuide[keyPath: keyPath]
+        self.context = context
+    }
 }
 
 extension LayoutDimension {
@@ -63,13 +68,13 @@ extension LayoutDimension.Relation {
     }
 
     @discardableResult
-    public func height(_ view: ViewProxy) -> LayoutDimension.Builder {
-        anchor(view.height)
+    public func height(_ layout: LayoutRepresentable) -> LayoutDimension.Builder {
+        anchor(layout.height)
     }
 
     @discardableResult
-    public func width(_ view: ViewProxy) -> LayoutDimension.Builder {
-        anchor(view.width)
+    public func width(_ layout: LayoutRepresentable) -> LayoutDimension.Builder {
+        anchor(layout.width)
     }
 }
 
