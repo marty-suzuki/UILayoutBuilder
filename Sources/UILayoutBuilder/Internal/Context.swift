@@ -13,9 +13,15 @@ import AppKit
 
 final class Context {
 
-    private(set) var constraints: [NSLayoutConstraint] = []
+    private var builders: [Builder] = []
 
-    func addConstraint(_ constrant: NSLayoutConstraint) {
-        constraints.append(constrant)
+    func builder(constraint: NSLayoutConstraint) -> Builder {
+        let builder = Builder(constraint: constraint)
+        builders.append(builder)
+        return builder
+    }
+
+    func buildConstraints() -> [NSLayoutConstraint] {
+        builders.map { $0.asConstraint() }
     }
 }

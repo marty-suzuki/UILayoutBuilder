@@ -11,18 +11,12 @@ import UIKit
 import AppKit
 #endif
 
-public final class Builder {
+public struct Builder {
 
     private let updater: ConstraintUpdater
-    private let context: Context
 
-    deinit {
-        context.addConstraint(updater.constraint)
-    }
-
-    init(constraint: NSLayoutConstraint, context: Context) {
+    init(constraint: NSLayoutConstraint) {
         self.updater = ConstraintUpdater(constraint)
-        self.context = context
     }
 
     @discardableResult

@@ -82,7 +82,7 @@ extension LayoutAxis.Relation {
 
     @discardableResult
     func anchor(_ anchor: LayoutAxis<Trait>) -> LayoutAxis.Builder {
-        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
+        context.builder(constraint: toAnchor(anchor.rawAnchor))
     }
 }
 

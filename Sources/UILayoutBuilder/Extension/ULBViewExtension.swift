@@ -45,7 +45,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: base, context: context),
             ViewProxy(view: subview, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -68,7 +68,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview1, context: context),
             ViewProxy(view: subview2, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -94,7 +94,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview2, context: context),
             ViewProxy(view: subview3, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -123,7 +123,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview3, context: context),
             ViewProxy(view: subview4, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -155,7 +155,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview4, context: context),
             ViewProxy(view: subview5, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -190,7 +190,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview5, context: context),
             ViewProxy(view: subview6, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -228,7 +228,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview6, context: context),
             ViewProxy(view: subview7, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -269,7 +269,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview7, context: context),
             ViewProxy(view: subview8, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -312,7 +312,7 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview8, context: context),
             ViewProxy(view: subview9, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 
     public func subview(
@@ -358,6 +358,6 @@ extension ULBViewAddSubview {
             ViewProxy(view: subview9, context: context),
             ViewProxy(view: subview10, context: context)
         )
-        NSLayoutConstraint.activate(context.constraints)
+        NSLayoutConstraint.activate(context.buildConstraints())
     }
 }

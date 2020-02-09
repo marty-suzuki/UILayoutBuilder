@@ -68,12 +68,12 @@ extension LayoutDimension.Relation {
 
     @discardableResult
     private func anchor(_ anchor: LayoutDimension) -> LayoutDimension.Builder {
-        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
+        context.builder(constraint: toAnchor(anchor.rawAnchor))
     }
 
     @discardableResult
     public func constant(_ constant: CGFloat) -> LayoutDimension.Builder {
-        .init(constraint: toConstant(constant), context: context)
+        context.builder(constraint: toConstant(constant))
     }
 
     @discardableResult
