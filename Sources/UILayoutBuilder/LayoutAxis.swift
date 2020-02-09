@@ -67,7 +67,63 @@ extension LayoutAxis {
 extension LayoutAxis.Relation {
 
     @discardableResult
-    public func anchor(_ anchor: LayoutAxis<Trait>) -> LayoutAxis.Builder {
+    func anchor(_ anchor: LayoutAxis<Trait>) -> LayoutAxis.Builder {
         .init(constraint: toAnchor(anchor.rawAnchor), context: context)
+    }
+}
+
+extension LayoutAxis.Relation where Trait == Axis.Y {
+
+    @discardableResult
+    public func top(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.top)
+    }
+
+    @discardableResult
+    public func bottom(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.bottom)
+    }
+
+    @discardableResult
+    public func centerY(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.centerY)
+    }
+
+    @discardableResult
+    public func firstBaseline(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.firstBaseline)
+    }
+
+    @discardableResult
+    public func lastBaseline(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.lastBaseline)
+    }
+}
+
+extension LayoutAxis.Relation where Trait == Axis.X {
+
+    @discardableResult
+    public func leading(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.leading)
+    }
+
+    @discardableResult
+    public func trailing(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.trailing)
+    }
+
+    @discardableResult
+    public func left(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.left)
+    }
+
+    @discardableResult
+    public func right(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.right)
+    }
+
+    @discardableResult
+    public func centerX(_ view: ViewProxy) -> LayoutAxis.Builder {
+        anchor(view.centerX)
     }
 }

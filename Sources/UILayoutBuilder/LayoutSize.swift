@@ -53,7 +53,7 @@ extension LayoutSize.Relation {
 
     @discardableResult
     public func size(_ view: ViewProxy) -> LayoutSize.Builder {
-        .init(width: width.anchor(view.width), height: height.anchor(view.height))
+        .init(width: width.width(view), height: height.height(view))
     }
 
     @discardableResult

@@ -53,13 +53,23 @@ extension LayoutDimension {
 extension LayoutDimension.Relation {
 
     @discardableResult
+    private func anchor(_ anchor: LayoutDimension) -> LayoutDimension.Builder {
+        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
+    }
+
+    @discardableResult
     public func constant(_ constant: CGFloat) -> LayoutDimension.Builder {
         .init(constraint: toConstant(constant), context: context)
     }
 
     @discardableResult
-    public func anchor(_ anchor: LayoutDimension) -> LayoutDimension.Builder {
-        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
+    public func height(_ view: ViewProxy) -> LayoutDimension.Builder {
+        anchor(view.height)
+    }
+
+    @discardableResult
+    public func width(_ view: ViewProxy) -> LayoutDimension.Builder {
+        anchor(view.width)
     }
 }
 

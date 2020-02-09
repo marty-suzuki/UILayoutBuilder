@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 
                     stackView.add.subview(view3, view4) { view3, view4 in
                         view3.width.equalTo.constant(100)
-                        view3.width.equalTo.anchor(view3.height)
+                        view3.width.equalTo.height(view3)
                     }
 
                     stackView.center.equalTo.center(view2)

@@ -24,24 +24,24 @@ public struct LayoutEdges {
 extension LayoutEdges {
 
     public var equalTo: Relation {
-        .init(toTopAnchor:      { [to = top]      from in to.equalTo.anchor(from) },
-              toLeadingAnchor:  { [to = leading]  from in to.equalTo.anchor(from) },
-              toBottomAnchor:   { [to = bottom]   from in to.equalTo.anchor(from) },
-              toTrailingAnchor: { [to = trailing] from in to.equalTo.anchor(from) })
+        .init(top: top.equalTo,
+              leading: leading.equalTo,
+              bottom: bottom.equalTo,
+              trailing: trailing.equalTo)
     }
 
     public var greaterThanOrEqualTo: Relation {
-        .init(toTopAnchor:      { [to = top]      from in to.greaterThanOrEqualTo.anchor(from) },
-              toLeadingAnchor:  { [to = leading]  from in to.greaterThanOrEqualTo.anchor(from) },
-              toBottomAnchor:   { [to = bottom]   from in to.greaterThanOrEqualTo.anchor(from) },
-              toTrailingAnchor: { [to = trailing] from in to.greaterThanOrEqualTo.anchor(from) })
+        .init(top: top.greaterThanOrEqualTo,
+              leading: leading.greaterThanOrEqualTo,
+              bottom: bottom.greaterThanOrEqualTo,
+              trailing: trailing.greaterThanOrEqualTo)
     }
 
     public var lessThanOrEqualTo: Relation {
-        .init(toTopAnchor:      { [to = top]      from in to.lessThanOrEqualTo.anchor(from) },
-              toLeadingAnchor:  { [to = leading]  from in to.lessThanOrEqualTo.anchor(from) },
-              toBottomAnchor:   { [to = bottom]   from in to.lessThanOrEqualTo.anchor(from) },
-              toTrailingAnchor: { [to = trailing] from in to.lessThanOrEqualTo.anchor(from) })
+        .init(top: top.lessThanOrEqualTo,
+              leading: leading.lessThanOrEqualTo,
+              bottom: bottom.lessThanOrEqualTo,
+              trailing: trailing.lessThanOrEqualTo)
     }
 }
 
@@ -49,10 +49,10 @@ extension LayoutEdges {
     fileprivate typealias _Builder = UILayoutBuilder.Builder
 
     public struct Relation {
-        fileprivate let toTopAnchor: (LayoutYAxis) -> _Builder
-        fileprivate let toLeadingAnchor: (LayoutXAxis) -> _Builder
-        fileprivate let toBottomAnchor: (LayoutYAxis) -> _Builder
-        fileprivate let toTrailingAnchor: (LayoutXAxis) -> _Builder
+        fileprivate let top: LayoutYAxis.Relation
+        fileprivate let leading: LayoutXAxis.Relation
+        fileprivate let bottom: LayoutYAxis.Relation
+        fileprivate let trailing: LayoutXAxis.Relation
     }
 
     public final class Builder {
@@ -84,11 +84,10 @@ extension LayoutEdges.Relation {
 
     @discardableResult
     public func edges(_ view: ViewProxy) -> LayoutEdges.Builder {
-        let edges = view.edges
-        return .init(top: toTopAnchor(edges.top),
-                     leading: toLeadingAnchor(edges.leading),
-                     bottom: toBottomAnchor(edges.bottom),
-                     trailing: toTrailingAnchor(edges.trailing))
+        .init(top: top.top(view),
+              leading: leading.leading(view),
+              bottom: bottom.bottom(view),
+              trailing: trailing.trailing(view))
     }
 }
 
