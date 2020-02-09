@@ -59,7 +59,7 @@ extension LayoutEdges {
         fileprivate let trailing: LayoutXAxis.Relation
     }
 
-    public final class Builder {
+    public struct Builder {
         private let top: _Builder
         private let leading: _Builder
         private let bottom: _Builder

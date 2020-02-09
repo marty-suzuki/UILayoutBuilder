@@ -79,7 +79,7 @@ extension LayoutAxes {
         fileprivate let axis2: LayoutAxis<Axis2>.Relation
     }
 
-    public final class Builder {
+    public struct Builder {
         private let axis1: _Builder
         private let axis2: _Builder
 

@@ -37,7 +37,7 @@ extension LayoutSize {
         fileprivate let height: LayoutDimension.Relation
     }
 
-    public final class Builder {
+    public struct Builder {
         private let width: _Builder
         private let height: _Builder
 
