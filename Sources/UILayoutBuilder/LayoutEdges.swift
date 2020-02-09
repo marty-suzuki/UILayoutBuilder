@@ -73,7 +73,7 @@ extension LayoutEdges.Relation {
     }
 
     @discardableResult
-    public func view(_ view: ViewProxy, all constant: CGFloat) -> [NSLayoutConstraint] {
+    public func view(_ view: ViewProxy, all constant: CGFloat = 0) -> [NSLayoutConstraint] {
         let edges = view.edges
         return [
             toTopAnchor(edges.top, constant),

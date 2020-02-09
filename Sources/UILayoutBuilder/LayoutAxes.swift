@@ -77,12 +77,35 @@ extension LayoutAxes {
 
 extension LayoutAxes.Relation {
 
-    @discardableResult
-    public func view(_ view: ViewProxy) -> [NSLayoutConstraint] {
+    private func view(_ view: ViewProxy, constant1: CGFloat, constant2: CGFloat) -> [NSLayoutConstraint] {
         let axes = Trait.axes(from: view)
         return [
-            axis1.equalTo.anchor(axes.axis1),
-            axis2.equalTo.anchor(axes.axis2)
+            axis1.equalTo.anchor(axes.axis1, constant: constant1),
+            axis2.equalTo.anchor(axes.axis2, constant: constant2)
         ]
+    }
+}
+
+extension LayoutAxes.Relation where Trait == Axes.Center {
+
+    @discardableResult
+    public func view(_ view: ViewProxy, x: CGFloat = 0, y: CGFloat = 0) -> [NSLayoutConstraint] {
+        self.view(view, constant1: x, constant2: y)
+    }
+}
+
+extension LayoutAxes.Relation where Trait == Axes.Horizontal {
+
+    @discardableResult
+    public func view(_ view: ViewProxy, leading: CGFloat = 0, trailing: CGFloat = 0) -> [NSLayoutConstraint] {
+        self.view(view, constant1: leading, constant2: trailing)
+    }
+}
+
+extension LayoutAxes.Relation where Trait == Axes.Vertical {
+
+    @discardableResult
+    public func view(_ view: ViewProxy, top: CGFloat = 0, bottom: CGFloat = 0) -> [NSLayoutConstraint] {
+        self.view(view, constant1: top, constant2: bottom)
     }
 }

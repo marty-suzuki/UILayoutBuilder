@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let view4 = UIView()
         view4.backgroundColor = .yellow
 
-        view.ulb.add { view in
+        view.ulb.layout { view in
 
             view.addSubview(view2) { view2 in
 
@@ -37,11 +37,16 @@ class ViewController: UIViewController {
                     stackView.addSubview(view3, view4) { view3, view4 in
                         view3.width.equalTo.constant(100)
                         view3.width.equalTo.anchor(view3.height)
-                        view4.size.equalTo.view(view3)
                     }
 
                     stackView.center.equalTo.view(view2)
                 }
+            }
+        }
+
+        view4.ulb.layout { view4 in
+            view3.ulb.layout { view3 in
+                view4.size.equalTo.view(view3)
             }
         }
     }
