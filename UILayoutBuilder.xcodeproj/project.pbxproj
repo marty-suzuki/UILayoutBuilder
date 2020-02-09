@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		ED85A67123F086AA00DDD8C8 /* ConstrantGroupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85A67023F086A900DDD8C8 /* ConstrantGroupType.swift */; };
 		OBJ_42 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* UIStackViewExtension.swift */; };
 		OBJ_43 /* ULBViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ULBViewExtension.swift */; };
 		OBJ_44 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Builder.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED85A67023F086A900DDD8C8 /* ConstrantGroupType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrantGroupType.swift; sourceTree = "<group>"; };
 		OBJ_10 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		OBJ_11 /* ULBViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ULBViewExtension.swift; sourceTree = "<group>"; };
 		OBJ_13 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -154,7 +156,6 @@
 				OBJ_35 /* LICENSE */,
 				OBJ_36 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -170,6 +171,7 @@
 			children = (
 				OBJ_9 /* Extension */,
 				OBJ_12 /* Internal */,
+				ED85A67023F086A900DDD8C8 /* ConstrantGroupType.swift */,
 				OBJ_16 /* LayoutAnchorType.swift */,
 				OBJ_17 /* LayoutAxes.swift */,
 				OBJ_18 /* LayoutAxis.swift */,
@@ -261,7 +263,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,6 +294,7 @@
 				OBJ_52 /* LayoutGuideProxy.swift in Sources */,
 				OBJ_53 /* LayoutRepresentable.swift in Sources */,
 				OBJ_54 /* LayoutSize.swift in Sources */,
+				ED85A67123F086AA00DDD8C8 /* ConstrantGroupType.swift in Sources */,
 				OBJ_55 /* UILayoutBuilder.swift in Sources */,
 				OBJ_56 /* ULBTypealias.swift in Sources */,
 				OBJ_57 /* ViewProxy.swift in Sources */,

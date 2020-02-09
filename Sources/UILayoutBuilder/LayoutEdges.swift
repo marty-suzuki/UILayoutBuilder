@@ -84,6 +84,17 @@ extension LayoutEdges {
     }
 }
 
+extension LayoutEdges.ConstrantGroup: ConstrantGroupType {
+
+    public func activate() {
+        NSLayoutConstraint.activate([top, leading, bottom, trailing])
+    }
+
+    public func deactivate() {
+        NSLayoutConstraint.deactivate([top, leading, bottom, trailing])
+    }
+}
+
 extension LayoutEdges.Relation {
 
     @discardableResult

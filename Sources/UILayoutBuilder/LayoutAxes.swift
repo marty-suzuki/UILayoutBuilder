@@ -95,6 +95,17 @@ extension LayoutAxes {
     }
 }
 
+extension LayoutAxes.ConstrantGroup: ConstrantGroupType {
+
+    public func activate() {
+        NSLayoutConstraint.activate([axis1, axis2])
+    }
+
+    public func deactivate() {
+        NSLayoutConstraint.deactivate([axis1, axis2])
+    }
+}
+
 extension LayoutAxes.Relation {
 
     private func axes(_ layout: LayoutRepresentable) -> LayoutAxes.Builder {

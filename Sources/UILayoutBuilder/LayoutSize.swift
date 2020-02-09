@@ -53,6 +53,17 @@ extension LayoutSize {
     }
 }
 
+extension LayoutSize.ConstrantGroup: ConstrantGroupType {
+
+    public func activate() {
+        NSLayoutConstraint.activate([width, height])
+    }
+
+    public func deactivate() {
+        NSLayoutConstraint.deactivate([width, height])
+    }
+}
+
 extension LayoutSize.Relation {
 
     @discardableResult
