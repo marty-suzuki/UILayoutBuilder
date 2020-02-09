@@ -8,9 +8,9 @@
 import UIKit
 
 public protocol LayoutAnchorType {
-    func constraint(equalTo anchor: Self, constant c: CGFloat) -> NSLayoutConstraint
-    func constraint(greaterThanOrEqualTo anchor: Self, constant c: CGFloat) -> NSLayoutConstraint
-    func constraint(lessThanOrEqualTo anchor: Self, constant c: CGFloat) -> NSLayoutConstraint
+    func constraint(equalTo anchor: Self) -> NSLayoutConstraint
+    func constraint(greaterThanOrEqualTo anchor: Self) -> NSLayoutConstraint
+    func constraint(lessThanOrEqualTo anchor: Self) -> NSLayoutConstraint
 }
 
 extension NSLayoutAnchor: LayoutAnchorType {}

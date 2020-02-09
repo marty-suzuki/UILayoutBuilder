@@ -26,30 +26,68 @@ extension LayoutSize {
 }
 
 extension LayoutSize {
+    fileprivate typealias _Builder = UILayoutBuilder.Builder
+
     public struct Relation {
         fileprivate let width: LayoutDimension.Relation
         fileprivate let height: LayoutDimension.Relation
+    }
+
+    public final class Builder {
+        private let width: _Builder
+        private let height: _Builder
+
+        fileprivate init(width: _Builder, height: _Builder) {
+            self.width = width
+            self.height = height
+        }
+    }
+
+    public struct ConstrantGroup {
+        public let width: NSLayoutConstraint
+        public let height: NSLayoutConstraint
     }
 }
 
 extension LayoutSize.Relation {
 
     @discardableResult
-    public func view(_ view: ViewProxy,
-                     multiplier: CGFloat = 1,
-                     width: CGFloat = 0,
-                     height: CGFloat = 0) -> [NSLayoutConstraint] {
-        [
-            self.width.anchor(view.width, multiplier: multiplier, constant: width),
-            self.height.anchor(view.height, multiplier: multiplier, constant: height)
-        ]
+    public func size(_ view: ViewProxy) -> LayoutSize.Builder {
+        .init(width: width.anchor(view.width), height: height.anchor(view.height))
     }
 
     @discardableResult
-    public func size(width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
-        [
-            self.width.constant(width),
-            self.height.constant(height)
-        ]
+    public func constant(width: CGFloat, height: CGFloat) -> LayoutSize.Builder {
+        .init(width: self.width.constant(width), height: self.height.constant(height))
+    }
+}
+
+extension LayoutSize.Builder {
+
+    @discardableResult
+    public func constant(width: CGFloat, height: CGFloat) -> LayoutSize.Builder {
+        self.width.constant(width)
+        self.height.constant(height)
+        return self
+    }
+
+    @discardableResult
+    public func priority(width: UILayoutPriority, height: UILayoutPriority) -> LayoutSize.Builder {
+        self.width.priority(width)
+        self.height.priority(height)
+        return self
+    }
+
+    @discardableResult
+    public func multiplier(width: CGFloat, height: CGFloat) -> LayoutSize.Builder {
+        self.width.multiplier(width)
+        self.height.multiplier(height)
+        return self
+    }
+
+
+    public func asConstraints() -> LayoutSize.ConstrantGroup {
+        .init(width: width.asConstraint(),
+              height: height.asConstraint())
     }
 }

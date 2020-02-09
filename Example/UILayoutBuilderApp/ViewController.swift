@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
             view.addSubview(view2) { view2 in
 
-                view2.edges.equalTo.view(view, all: 30)
+                view2.edges.equalTo.edges(view).constant(30)
 
                 view2.addSubview(stackView) { stackView in
 
@@ -39,14 +39,8 @@ class ViewController: UIViewController {
                         view3.width.equalTo.anchor(view3.height)
                     }
 
-                    stackView.center.equalTo.view(view2)
+                    stackView.center.equalTo.center(view2)
                 }
-            }
-        }
-
-        view4.ulb.layout { view4 in
-            view3.ulb.layout { view3 in
-                view4.size.equalTo.view(view3)
             }
         }
     }

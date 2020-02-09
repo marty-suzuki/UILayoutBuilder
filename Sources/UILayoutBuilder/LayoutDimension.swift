@@ -22,28 +22,29 @@ public struct LayoutDimension {
 extension LayoutDimension {
 
     public var equalTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0, multiplier: $1, constant: $2) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0) },
               toConstant: { [rawAnchor] in rawAnchor.constraint(equalToConstant: $0) },
               context: context)
     }
 
     public var greaterThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0, multiplier: $1, constant: $2) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0) },
               toConstant: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualToConstant: $0) },
               context: context)
     }
 
     public var lessThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0, multiplier: $1, constant: $2) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0) },
               toConstant: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualToConstant: $0) },
               context: context)
     }
 }
 
 extension LayoutDimension {
+    public typealias Builder = UILayoutBuilder.Builder
 
     public struct Relation {
-        fileprivate let toAnchor: (RawAnchor, CGFloat, CGFloat) -> NSLayoutConstraint
+        fileprivate let toAnchor: (RawAnchor) -> NSLayoutConstraint
         fileprivate let toConstant: (CGFloat) -> NSLayoutConstraint
         fileprivate let context: Context
     }
@@ -52,13 +53,13 @@ extension LayoutDimension {
 extension LayoutDimension.Relation {
 
     @discardableResult
-    public func constant(_ constant: CGFloat) -> NSLayoutConstraint {
-        context.addConstraint(toConstant(constant))
+    public func constant(_ constant: CGFloat) -> LayoutDimension.Builder {
+        .init(constraint: toConstant(constant), context: context)
     }
 
     @discardableResult
-    public func anchor(_ anchor: LayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
-        context.addConstraint(toAnchor(anchor.rawAnchor, multiplier, constant))
+    public func anchor(_ anchor: LayoutDimension) -> LayoutDimension.Builder {
+        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
     }
 }
 

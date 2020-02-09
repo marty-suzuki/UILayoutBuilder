@@ -25,6 +25,10 @@
 		ED6CDBEE23EC935B000E2E44 /* LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */; };
 		ED6CDBF023ED0F09000E2E44 /* LayoutAnchorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBEF23ED0F09000E2E44 /* LayoutAnchorType.swift */; };
 		ED6CDBF223ED15C3000E2E44 /* LayoutAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */; };
+		ED6CDC1423EFC6A2000E2E44 /* ConstraintUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDC1323EFC6A2000E2E44 /* ConstraintUpdater.swift */; };
+		ED6CDC1723EFC7EA000E2E44 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDC1623EFC7EA000E2E44 /* Context.swift */; };
+		ED6CDC1923EFC81A000E2E44 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDC1823EFC81A000E2E44 /* UIViewExtension.swift */; };
+		ED6CDC1B23EFC8CD000E2E44 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6CDC1A23EFC8CD000E2E44 /* Builder.swift */; };
 		EDA5405623E9DB90009A41C5 /* LayoutAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */; };
 		EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */; };
 		EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */; };
@@ -57,6 +61,10 @@
 		ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSize.swift; sourceTree = "<group>"; };
 		ED6CDBEF23ED0F09000E2E44 /* LayoutAnchorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnchorType.swift; sourceTree = "<group>"; };
 		ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAxes.swift; sourceTree = "<group>"; };
+		ED6CDC1323EFC6A2000E2E44 /* ConstraintUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintUpdater.swift; sourceTree = "<group>"; };
+		ED6CDC1623EFC7EA000E2E44 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		ED6CDC1823EFC81A000E2E44 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		ED6CDC1A23EFC8CD000E2E44 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAxis.swift; sourceTree = "<group>"; };
 		EDA5405923E9DC10009A41C5 /* LayoutDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDimension.swift; sourceTree = "<group>"; };
 		EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProxy.swift; sourceTree = "<group>"; };
@@ -89,6 +97,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED6CDC1523EFC7D1000E2E44 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				ED6CDC1323EFC6A2000E2E44 /* ConstraintUpdater.swift */,
+				ED6CDC1623EFC7EA000E2E44 /* Context.swift */,
+				ED6CDC1A23EFC8CD000E2E44 /* Builder.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +157,7 @@
 		OBJ_8 /* UILayoutBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				ED6CDC1523EFC7D1000E2E44 /* Internal */,
 				OBJ_9 /* UILayoutBuilder.swift */,
 				EDA5405523E9DB90009A41C5 /* LayoutAxis.swift */,
 				ED6CDBF123ED15C3000E2E44 /* LayoutAxes.swift */,
@@ -147,6 +166,7 @@
 				ED6CDBED23EC935B000E2E44 /* LayoutSize.swift */,
 				EDA5405B23E9DC6D009A41C5 /* ViewProxy.swift */,
 				ED6CDBEF23ED0F09000E2E44 /* LayoutAnchorType.swift */,
+				ED6CDC1823EFC81A000E2E44 /* UIViewExtension.swift */,
 			);
 			name = UILayoutBuilder;
 			path = Sources/UILayoutBuilder;
@@ -238,12 +258,16 @@
 			files = (
 				EDA5405C23E9DC6D009A41C5 /* ViewProxy.swift in Sources */,
 				EDA5405A23E9DC10009A41C5 /* LayoutDimension.swift in Sources */,
+				ED6CDC1923EFC81A000E2E44 /* UIViewExtension.swift in Sources */,
 				ED6CDBF223ED15C3000E2E44 /* LayoutAxes.swift in Sources */,
+				ED6CDC1723EFC7EA000E2E44 /* Context.swift in Sources */,
 				ED6CDBF023ED0F09000E2E44 /* LayoutAnchorType.swift in Sources */,
 				ED6CDBEC23EC888E000E2E44 /* LayoutEdges.swift in Sources */,
+				ED6CDC1423EFC6A2000E2E44 /* ConstraintUpdater.swift in Sources */,
 				OBJ_24 /* UILayoutBuilder.swift in Sources */,
 				ED6CDBEE23EC935B000E2E44 /* LayoutSize.swift in Sources */,
 				EDA5405623E9DB90009A41C5 /* LayoutAxis.swift in Sources */,
+				ED6CDC1B23EFC8CD000E2E44 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

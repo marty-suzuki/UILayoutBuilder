@@ -63,49 +63,120 @@ public struct LayoutAxes<Trait: LayoutAxiesTrait> {
 extension LayoutAxes {
 
     public var equalTo: Relation {
-        .init(axis1: axis1, axis2: axis2)
+        .init(axis1: axis1.equalTo, axis2: axis2.equalTo)
     }
 }
 
 extension LayoutAxes {
+    fileprivate typealias _Builder = UILayoutBuilder.Builder
 
     public struct Relation {
-        fileprivate let axis1: LayoutAxis<Axis1>
-        fileprivate let axis2: LayoutAxis<Axis2>
+        fileprivate let axis1: LayoutAxis<Axis1>.Relation
+        fileprivate let axis2: LayoutAxis<Axis2>.Relation
+    }
+
+    public final class Builder {
+        private let axis1: _Builder
+        private let axis2: _Builder
+
+        fileprivate init(axis1: _Builder, axis2: _Builder) {
+            self.axis1 = axis1
+            self.axis2 = axis2
+        }
+    }
+
+    public struct ConstrantGroup {
+        fileprivate let axis1: NSLayoutConstraint
+        fileprivate let axis2: NSLayoutConstraint
     }
 }
 
 extension LayoutAxes.Relation {
 
-    private func view(_ view: ViewProxy, constant1: CGFloat, constant2: CGFloat) -> [NSLayoutConstraint] {
+    private func axes(_ view: ViewProxy) -> LayoutAxes.Builder {
         let axes = Trait.axes(from: view)
-        return [
-            axis1.equalTo.anchor(axes.axis1, constant: constant1),
-            axis2.equalTo.anchor(axes.axis2, constant: constant2)
-        ]
+        return .init(axis1: axis1.anchor(axes.axis1), axis2: axis2.anchor(axes.axis2))
     }
 }
+
+extension LayoutAxes.Builder {
+
+    private func constant(axis1: CGFloat, axis2: CGFloat) -> LayoutAxes.Builder {
+        self.axis1.constant(axis1)
+        self.axis2.constant(axis2)
+        return self
+    }
+
+    public func asConstraints() -> LayoutAxes.ConstrantGroup {
+        .init(axis1: axis1.asConstraint(), axis2: axis2.asConstraint())
+    }
+}
+
+// MARK: - Axes.Center
 
 extension LayoutAxes.Relation where Trait == Axes.Center {
 
     @discardableResult
-    public func view(_ view: ViewProxy, x: CGFloat = 0, y: CGFloat = 0) -> [NSLayoutConstraint] {
-        self.view(view, constant1: x, constant2: y)
+    public func center(_ view: ViewProxy) -> LayoutAxes.Builder {
+        axes(view)
     }
 }
+
+extension LayoutAxes.Builder where Trait == Axes.Center {
+
+    @discardableResult
+    public func constant(x: CGFloat, y: CGFloat) -> LayoutAxes.Builder {
+        constant(axis1: x, axis2: y)
+    }
+}
+
+extension LayoutAxes.ConstrantGroup where Trait == Axes.Center {
+    public var x: NSLayoutConstraint { axis1 }
+    public var y: NSLayoutConstraint { axis2 }
+}
+
+// MARK: - Axes.Horizontal
 
 extension LayoutAxes.Relation where Trait == Axes.Horizontal {
 
     @discardableResult
-    public func view(_ view: ViewProxy, leading: CGFloat = 0, trailing: CGFloat = 0) -> [NSLayoutConstraint] {
-        self.view(view, constant1: leading, constant2: trailing)
+    public func horizontal(_ view: ViewProxy) -> LayoutAxes.Builder {
+        axes(view)
     }
 }
+
+extension LayoutAxes.Builder where Trait == Axes.Horizontal {
+
+    @discardableResult
+    public func constant(leading: CGFloat, trailing: CGFloat) -> LayoutAxes.Builder {
+        constant(axis1: leading, axis2: trailing)
+    }
+}
+
+extension LayoutAxes.ConstrantGroup where Trait == Axes.Horizontal {
+    public var leading: NSLayoutConstraint { axis1 }
+    public var trailing: NSLayoutConstraint { axis2 }
+}
+
+// MARK: - Axes.Vertical
 
 extension LayoutAxes.Relation where Trait == Axes.Vertical {
 
     @discardableResult
-    public func view(_ view: ViewProxy, top: CGFloat = 0, bottom: CGFloat = 0) -> [NSLayoutConstraint] {
-        self.view(view, constant1: top, constant2: bottom)
+    public func vertical(_ view: ViewProxy) -> LayoutAxes.Builder {
+        axes(view)
     }
+}
+
+extension LayoutAxes.Builder where Trait == Axes.Vertical {
+
+    @discardableResult
+    public func constant(top: CGFloat, bottom: CGFloat) -> LayoutAxes.Builder {
+        constant(axis1: top, axis2: bottom)
+    }
+}
+
+extension LayoutAxes.ConstrantGroup where Trait == Axes.Vertical {
+    public var top: NSLayoutConstraint { axis1 }
+    public var bottom: NSLayoutConstraint { axis2 }
 }

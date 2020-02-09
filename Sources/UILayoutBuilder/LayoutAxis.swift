@@ -40,25 +40,26 @@ public struct LayoutAxis<Trait: LayoutAxisTrait> {
 extension LayoutAxis {
 
     public var equalTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0, constant: $1) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(equalTo: $0) },
               context: context)
     }
 
     public var greaterThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0, constant: $1) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(greaterThanOrEqualTo: $0) },
               context: context)
     }
 
     public var lessThanOrEqualTo: Relation {
-        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0, constant: $1) },
+        .init(toAnchor: { [rawAnchor] in rawAnchor.constraint(lessThanOrEqualTo: $0) },
               context: context)
     }
 }
 
 extension LayoutAxis {
+    public typealias Builder = UILayoutBuilder.Builder
 
     public struct Relation {
-        fileprivate let toAnchor: (RawAnchor, CGFloat) -> NSLayoutConstraint
+        fileprivate let toAnchor: (RawAnchor) -> NSLayoutConstraint
         fileprivate let context: Context
     }
 }
@@ -66,7 +67,7 @@ extension LayoutAxis {
 extension LayoutAxis.Relation {
 
     @discardableResult
-    public func anchor(_ anchor: LayoutAxis<Trait>, constant: CGFloat = 0) -> NSLayoutConstraint {
-        context.addConstraint(toAnchor(anchor.rawAnchor, constant))
+    public func anchor(_ anchor: LayoutAxis<Trait>) -> LayoutAxis.Builder {
+        .init(constraint: toAnchor(anchor.rawAnchor), context: context)
     }
 }
