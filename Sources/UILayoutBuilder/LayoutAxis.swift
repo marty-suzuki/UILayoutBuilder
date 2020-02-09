@@ -5,7 +5,11 @@
 //  Created by marty-suzuki on 2020/02/05.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public protocol LayoutAxisTrait {
     associatedtype RawAnchor: LayoutAnchorType
@@ -31,16 +35,21 @@ public struct LayoutAxis<Trait: LayoutAxisTrait> {
     private let rawAnchor: RawAnchor
     private let context: Context
 
-    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>, context: Context) {
+    init(_ view: ULBView, for keyPath: KeyPath<ULBView, RawAnchor>, context: Context) {
         self.rawAnchor = view[keyPath: keyPath]
         self.context = context
     }
+}
+
+#if os(iOS) || os(tvOS)
+extension LayoutAxis {
 
     init(_ layoutGuide: UILayoutGuide, for keyPath: KeyPath<UILayoutGuide, RawAnchor>, context: Context) {
         self.rawAnchor = layoutGuide[keyPath: keyPath]
         self.context = context
     }
 }
+#endif
 
 extension LayoutAxis {
 

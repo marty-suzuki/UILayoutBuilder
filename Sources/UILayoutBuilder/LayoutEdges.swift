@@ -5,7 +5,11 @@
 //  Created by marty-suzuki on 2020/02/07.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public struct LayoutEdges {
     private let top: LayoutYAxis

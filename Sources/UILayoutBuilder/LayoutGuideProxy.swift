@@ -5,6 +5,7 @@
 //  Created by marty-suzuki on 2020/02/09.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
 public struct LayoutGuideProxy {
@@ -35,3 +36,4 @@ extension LayoutGuideProxy: LayoutRepresentable {
     public var horizontal   : LayoutHorizontal { .init(axis1: leading, axis2: trailing) }
     public var vertical     : LayoutVertical   { .init(axis1: top,     axis2: bottom) }
 }
+#endif

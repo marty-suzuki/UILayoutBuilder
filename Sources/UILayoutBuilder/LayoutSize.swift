@@ -5,7 +5,11 @@
 //  Created by marty-suzuki on 2020/02/07.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public struct LayoutSize {
 
@@ -72,7 +76,7 @@ extension LayoutSize.Builder {
     }
 
     @discardableResult
-    public func priority(width: UILayoutPriority, height: UILayoutPriority) -> LayoutSize.Builder {
+    public func priority(width: LayoutPriority, height: LayoutPriority) -> LayoutSize.Builder {
         self.width.priority(width)
         self.height.priority(height)
         return self

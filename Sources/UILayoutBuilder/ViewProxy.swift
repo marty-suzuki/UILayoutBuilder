@@ -5,14 +5,12 @@
 //  Created by marty-suzuki on 2020/02/05.
 //
 
-import UIKit
-
 public struct ViewProxy {
 
-    private let view: UIView
+    private let view: ULBView
     private let context: Context
 
-    init(view: UIView, context: Context) {
+    init(view: ULBView, context: Context) {
         self.view = view
         self.context = context
     }
@@ -39,7 +37,10 @@ extension ViewProxy: LayoutRepresentable {
     public var vertical     : LayoutVertical   { .init(axis1: top,     axis2: bottom) }
 }
 
+#if os(iOS) || os(tvOS)
 extension ViewProxy {
+
+    @available(iOS 11, tvOS 11, macCatalyst 13, *)
     public var safeAreaLayoutGuide: LayoutGuideProxy {
         .init(layoutGuide: view.safeAreaLayoutGuide, context: context)
     }
@@ -48,11 +49,12 @@ extension ViewProxy {
         .init(layoutGuide: view.layoutMarginsGuide, context: context)
     }
 }
+#endif
 
 extension ViewProxy {
 
     public struct AddSubview {
-        fileprivate let view: UIView
+        fileprivate let view: ULBView
         fileprivate let context: Context
     }
 
@@ -61,15 +63,15 @@ extension ViewProxy {
 
 extension ViewProxy.AddSubview {
 
-    public func subview(_ subview: UIView, handler: (ViewProxy) -> Void = { _ in }) {
+    public func subview(_ subview: ULBView, handler: (ViewProxy) -> Void = { _ in }) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view._add(subview: subview)
         handler(ViewProxy(view: subview, context: context))
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
         handler: (
         ViewProxy,
         ViewProxy
@@ -86,9 +88,9 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -107,10 +109,10 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -131,11 +133,11 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -158,12 +160,12 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
-        _ subview6: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
+        _ subview6: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -188,13 +190,13 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
-        _ subview6: UIView,
-        _ subview7: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
+        _ subview6: ULBView,
+        _ subview7: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -221,14 +223,14 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
-        _ subview6: UIView,
-        _ subview7: UIView,
-        _ subview8: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
+        _ subview6: ULBView,
+        _ subview7: ULBView,
+        _ subview8: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -257,15 +259,15 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
-        _ subview6: UIView,
-        _ subview7: UIView,
-        _ subview8: UIView,
-        _ subview9: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
+        _ subview6: ULBView,
+        _ subview7: ULBView,
+        _ subview8: ULBView,
+        _ subview9: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,
@@ -295,16 +297,16 @@ extension ViewProxy.AddSubview {
     }
 
     public func subview(
-        _ subview1: UIView,
-        _ subview2: UIView,
-        _ subview3: UIView,
-        _ subview4: UIView,
-        _ subview5: UIView,
-        _ subview6: UIView,
-        _ subview7: UIView,
-        _ subview8: UIView,
-        _ subview9: UIView,
-        _ subview10: UIView,
+        _ subview1: ULBView,
+        _ subview2: ULBView,
+        _ subview3: ULBView,
+        _ subview4: ULBView,
+        _ subview5: ULBView,
+        _ subview6: ULBView,
+        _ subview7: ULBView,
+        _ subview8: ULBView,
+        _ subview9: ULBView,
+        _ subview10: ULBView,
         handler: (
         ViewProxy,
         ViewProxy,

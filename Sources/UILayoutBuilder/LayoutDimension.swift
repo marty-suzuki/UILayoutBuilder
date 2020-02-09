@@ -5,7 +5,11 @@
 //  Created by marty-suzuki on 2020/02/05.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public struct LayoutDimension {
     typealias RawAnchor = NSLayoutDimension
@@ -13,16 +17,21 @@ public struct LayoutDimension {
     private let rawAnchor: RawAnchor
     private let context: Context
 
-    init(_ view: UIView, for keyPath: KeyPath<UIView, RawAnchor>, context: Context) {
+    init(_ view: ULBView, for keyPath: KeyPath<ULBView, RawAnchor>, context: Context) {
         self.rawAnchor = view[keyPath: keyPath]
         self.context = context
     }
+}
+
+#if os(iOS) || os(tvOS)
+extension LayoutDimension {
 
     init(_ layoutGuide: UILayoutGuide, for keyPath: KeyPath<UILayoutGuide, RawAnchor>, context: Context) {
         self.rawAnchor = layoutGuide[keyPath: keyPath]
         self.context = context
     }
 }
+#endif
 
 extension LayoutDimension {
 
