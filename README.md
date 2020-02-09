@@ -14,6 +14,8 @@
 Using UILayoutBuilder, make it easy to see constraints with view hierarchy.<br/>
 In addition, you can find a constraint method easily by auto-completion with first one or two charactors.
 
+![auto-completion](https://user-images.githubusercontent.com/2082134/74106399-1827b380-4baa-11ea-9e17-2c728ed7ca56.gif)
+
 You can replace:
 
 ```swift
@@ -41,6 +43,8 @@ view.ulb.add.subview(subview) { view, subview in
 
 Start with `ulb.add.subview`, receives proxy of superview and subview. Call `proxy.add.subview`, receives proxy of subviews only.<br/>
 You can constrain for AutoLayout using them.
+
+<img src="https://user-images.githubusercontent.com/2082134/74106419-3ee5ea00-4baa-11ea-8bca-4b09a58c5f79.png" align="right" height="300px">
 
 ```swift
 view.ulb.add.subview(grayview) { view, grayview in
