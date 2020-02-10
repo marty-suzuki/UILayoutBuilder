@@ -1,8 +1,12 @@
 # UILayoutBuilder 📱🛠
 
 <p align='center'>
-  <img src='https://img.shields.io/badge/Platform-iOS%20tvOS%20macOS-orange.svg?style=flat' alt='Carthage compatible' />
+  <img src='https://img.shields.io/badge/Platform-iOS%20|%20tvOS%20|%20macOS-blue.svg?style=flat' alt='Carthage compatible' />
+  <img src='https://img.shields.io/cocoapods/l/UILayoutBuilder.svg?style=flat' alt='LICENSE'>
   <br/>
+  <a href=''>
+    <img src='https://img.shields.io/cocoapods/v/UILayoutBuilder.svg?style=flat' alt='CocoaPods'>
+  </a>
   <a href='https://github.com/Carthage/Carthage'>
     <img src='https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat' alt='Carthage compatible' />
   </a>
@@ -37,6 +41,34 @@ view.ulb.add.subview(subview) { view, subview in
     subview.bottom.equalTo.bottom(view.safeAreaLayoutGuide).constant(-10)
     subview.trailing.equalTo.trailing(view).constant(-10)
 }
+```
+
+## Installation
+
+### Carthage
+
+If you’re using [Carthage](https://github.com/Carthage/Carthage), simply add
+UILayoutBuilder to your `Cartfile`:
+
+```ruby
+github "marty-suzuki/UILayoutBuilder"
+```
+
+### CocoaPods
+
+UILayoutBuilder is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "UILayoutBuilder"
+```
+
+### Swift Package Manager
+
+Simply add the following line to your `Package.swift`:
+
+```
+.package(url: "https://github.com/marty-suzuki/UILayoutBuilder.git", from: "version")
 ```
 
 ## Usage
@@ -160,6 +192,17 @@ let constraints = subview.vertical.equalTo.vertical(view).asConstraints()
 let top: NSLayoutConstraint = constraints.top
 let bottom: NSLayoutConstraint = constraints.bottom
 ```
+
+## Requirements
+
+- Xcode 11.3.1 or greater
+- iOS 10.0 or greater
+- tvOS 10.0 or greater
+- macOS 10.11 or greater
+
+## Author
+
+Taiki Suzuki, s1180183@gmail.com
 
 ## LICENSE
 
